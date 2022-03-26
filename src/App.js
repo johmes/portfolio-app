@@ -6,6 +6,10 @@ import { GlobalStyles } from './Styles/global';
 import { theme } from './Styles/theme';
 import { Burger, Menu } from './components';
 import FocusLock from 'react-focus-lock';
+import { getAnalytics, logEvent } from "firebase/analytics";
+
+const analytics = getAnalytics();
+logEvent(analytics, 'notification_received');
 
 function App() {
   const doc = document.documentElement;

@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Axios, db } from '../firebase/firebaseConfig'
+import { Axios, app } from '../Config/firebase';
 import { ButtonWrapper, Button } from '../components/Button/CTAButton.styled';
 
 export default function Contact({ lightTheme }) {
@@ -11,6 +11,34 @@ export default function Contact({ lightTheme }) {
     const [formData, setFormData] = useState({});
 
     const maxLength = 1000;
+
+    const sendEmail = () => {
+        Axios.post(
+            './submit',
+            formData
+        )
+            .then(() => {
+                app.firestore().collection('emails').add({
+                    name: formData.name,
+                    email: formData.email,
+                    message: formData.message,
+                    time: new Date(),
+                });
+                setStatus('Success');
+                setFormData({
+                    name: '',
+                    email: '',
+                    message: '',
+                })
+                setCharacterCount(0);
+            })
+            .catch(error => {
+                setStatus('Failed');
+                console.log(error);
+            })
+
+    }
+
 
     const updateInput = e => {
         setFormData({
@@ -28,33 +56,6 @@ export default function Contact({ lightTheme }) {
         setStatus('Sending...');
         sendEmail()
     }
-    const sendEmail = () => {
-        Axios.post(
-            './submit',
-            formData
-        )
-            .then(res => {
-                db.collection('emails').add({
-                    name: formData.name,
-                    email: formData.email,
-                    message: formData.message,
-                    time: new Date(),
-                });
-                setStatus('Success');
-            })
-            .catch(error => {
-                setStatus('Failed');
-                console.log(error);
-            })
-
-        setFormData({
-            name: '',
-            email: '',
-            message: '',
-        })
-        setCharacterCount(0);
-    }
-
 
     return (
         <div id="contact" className={"Content-area " + theme}>
@@ -62,44 +63,37 @@ export default function Contact({ lightTheme }) {
                 <h2 ref={titleRef}>Contact</h2>
 
                 <form id="contact-form" onSubmit={handleSubmit} method="POST">
-                    <div className="form-group">
-                        <label htmlFor="contactNameInput">Name</label>
-                        <input
-                            type="text"
-                            name="name"
-                            id="contactNameInput"
-                            className="form-control"
-                            onChange={updateInput}
-                            value={formData.name || ''}
-                        />
-                    </div>
+                    <Input
+                        label="Name"
+                        type="text"
+                        name="name"
+                        id="contactNameInput"
+                        onChange={updateInput}
+                        value={formData.name || ''}
+                    />
 
-                    <div className="form-group">
-                        <label htmlFor="contactEmail">Email address</label>
-                        <input
-                            type="email"
-                            name="email"
-                            id="contactEmail"
-                            className="form-control"
-                            onChange={updateInput}
-                            value={formData.email || ''}
-                            aria-describedby="emailHelp"
-                        />
-                    </div>
+                    <Input
+                        label="Email address"
+                        type="email"
+                        name="email"
+                        id="contactEmail"
+                        onChange={updateInput}
+                        value={formData.email || ''}
+                        aria-describedby="emailHelp"
+                    />
 
-                    <div className="form-group">
-                        <label htmlFor="contactTextArea">Message</label>
-                        <textarea
-                            name="message"
-                            className="form-control"
-                            id="contactTextArea"
-                            rows="10"
-                            maxLength={maxLength}
-                            onChange={updateInput}
-                            value={formData.message}
-                        />
-                        <span id="maxChar" className='Max-lenght'>{`${characterCount}/${maxLength}`}</span>
-                    </div>
+                    <TextAreaInput
+                        label="Message"
+                        name="message"
+                        id="contactTextArea"
+                        rows="15"
+                        charCount={characterCount}
+                        maxLength={maxLength}
+                        onChange={updateInput}
+                        value={formData.message}
+                        limited
+
+                    />
 
                     <ButtonWrapper aria-label="Submit">
                         <Button type="submit" secondary>
@@ -108,8 +102,55 @@ export default function Contact({ lightTheme }) {
                     </ButtonWrapper>
 
                 </form>
-                <div className={`Submit-status ${status === "Success" ? "Success" : (status === "Failed" ? "Failed" : "")}`}>{status}</div>
+                <div
+                    className={
+                        `Submit-status ${status === "Success" ?
+                            "Success" :
+                            (status === "Failed"
+                                ? "Failed" :
+                                "")}`
+                    }
+                >
+                    {status}
+                </div>
             </div>
         </div>
     )
+}
+
+const Input = ({ label, ...props }) => {
+    return (
+        <div className="form-group">
+            <label htmlFor="contactEmail">{label}</label>
+            <input
+                className="form-control"
+                {...props}
+            />
+        </div>
+    );
+}
+
+const TextAreaInput = ({ label, limited, charCount, ...props }) => {
+    return (
+        <div className="form-group">
+            <label htmlFor="contactTextArea">
+                {label}
+            </label>
+            <textarea
+                className="form-control"
+                {...props}
+            />
+
+            {limited ? 
+                <span
+                    id="maxChar"
+                    className='Max-lenght'
+                >
+                    {`${charCount}/${props.maxLength}`}
+                </span> :
+                null
+            }
+
+        </div>
+    );
 }

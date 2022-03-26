@@ -7,6 +7,7 @@ import Projects from "../../Projects";
 import Contact from "../../Contact";
 import Skills from "../../Skills";
 import About from '../../About';
+import PrivacyPolicy from "../../Privacy";
 import NotFound from "../../NotFound";
 
 import {
@@ -59,6 +60,7 @@ function Menu({ open, visible, ...props }) {
                     <Route path="/Skills" element={<Skills />} />
                     <Route path="/About" element={<About />} />
                     <Route path="/Contact" element={<Contact />} />
+                    <Route path="/Privacy" element={<PrivacyPolicy />} />
                     <Route path="*" element={<NotFound />} />
                 </Routes>
             </BrowserRouter>

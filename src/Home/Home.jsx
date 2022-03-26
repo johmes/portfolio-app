@@ -17,7 +17,7 @@ export default function Home() {
                 <div className='Inner'>
                     <p className="Greeting-text">Hi, it's</p>
                     <h1 ref={titleRef}><span className="Header-highlight">Johannes</span> Mensalo</h1>
-                    <p className="Slogan-text">~ Developing The Future ~</p>
+                    <p className="Slogan-text">Developing The Future</p>
                     <div className='Content-sneakpeek'>
                         <figure>
                             <p>
@@ -26,8 +26,9 @@ export default function Home() {
                             </p>
                         </figure>
                         <CTAButton target="about" />
-                    </div>
 
+                    </div>
+                    
                 </div>
             </div>
             <About lightTheme={true} />
