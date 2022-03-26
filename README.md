@@ -1,3 +1,22 @@
+# Johannes Mensalo Portfolio Web Application
+
+This web app is made using React.
+
+# Libraries and dependencies
+  - axios https://github.com/axios/axios
+  - cors https://www.npmjs.com/package/cors
+  - firebase https://github.com/firebase
+  - nodemailer https://github.com/nodemailer/nodemailer
+  - react-focus-look https://www.npmjs.com/package/react-focus-lock
+  - react-icons https://react-icons.github.io/react-icons/
+  - react-router-dom https://v5.reactrouter.com/web/guides/quick-start
+  - react-scroll https://github.com/fisshy/react-scroll
+  - yarn https://yarnpkg.com/
+  - styled-components https://styled-components.com/
+  - node-sass https://github.com/sass/node-sass
+  - i18next https://www.i18next.com/
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
