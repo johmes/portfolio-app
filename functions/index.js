@@ -16,15 +16,6 @@ const mailTransport = nodemailer.createTransport({
   },
 });
 
-// auth: {
-//   type: 'OAuth2',
-//   user: "portfolio-johannes-mensalo@appspot.gserviceaccount.com",
-//   serviceClient: functions.config().gmail.serviceclient,
-//   privateKey: functions.config().gmail.privatekey,
-//   accessToken: functions.config().gmail.accesstoken,
-//   expires: 1484314697598
-// }
-
 exports.submit = functions.region("europe-west1")
     .https.onRequest((req, res) => {
       res.set("Access-Control-Allow-Origin", "*");
