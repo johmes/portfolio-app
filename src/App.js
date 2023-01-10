@@ -9,7 +9,7 @@ import FocusLock from 'react-focus-lock';
 import { getAnalytics, logEvent } from "firebase/analytics";
 
 const analytics = getAnalytics();
-logEvent(analytics, 'notification_received');
+logEvent(analytics, 'main_page');
 
 function App() {
   const doc = document.documentElement;
@@ -26,8 +26,6 @@ function App() {
   const [direction, setDirection] = useState();
   const [prevDirection, setPrevDirection] = useState();
 
-  // Checks with direction const if user scrolling down and sets visible to false
-  // if direction is up, sets true
   const toggleHeader = useCallback((direction, curScroll) => {
     if (direction === 2 && curScroll > 80) {
       setVisible(false);
@@ -38,22 +36,19 @@ function App() {
     setPrevDirection(direction);
   }, [setPrevDirection]);
 
-  // Detects scroll event and sets direction by that
+
   const handleScroll = useCallback(() => {
     const currentScrollPos = window.scrollY || doc.scrollTop;
 
     if (currentScrollPos > prevScrollPos) {
-      // up
       setDirection(2);
     } else if (currentScrollPos < prevScrollPos) {
-      // down
       setDirection(1);
     }
 
     // Calls function to toggle header if true
     if (direction !== prevDirection) {
       toggleHeader(direction, currentScrollPos);
-
     }
 
     setPrevScrollPos(currentScrollPos);
@@ -61,7 +56,6 @@ function App() {
   }, [direction, prevDirection, prevScrollPos, setDirection, doc.scrollTop, toggleHeader]);
 
 
-  // Listen when scrolling begins and hide menu
   Events.scrollEvent.register('begin', function (to, element) {
     setOpen(false)
   });
@@ -76,20 +70,33 @@ function App() {
   }, [prevScrollPos, visible, handleScroll]);
 
 
+  return root(node, open, visible, setOpen, menuId);
+}
+
+
+function root(node, open, visible, setOpen, menuId) {
   return (
     <ThemeProvider theme={theme}>
-      <>
-        <GlobalStyles />
-        <div ref={node}>
-          <FocusLock disabled={!open}>
-            <Burger open={open} visible={visible} setOpen={setOpen} aria-controls={menuId} />
-            <Menu open={open} visible={visible} setOpen={setOpen} id={menuId} />
-          </FocusLock>
-        </div>
-      </>
-
+      <GlobalStyles />
+      <div ref={node}>
+        <FocusLock disabled={!open}>
+          <Burger
+            open={open}
+            visible={visible}
+            setOpen={setOpen}
+            aria-controls={menuId}
+          />
+          <Menu
+            open={open}
+            visible={visible}
+            setOpen={setOpen}
+            id={menuId}
+          />
+        </FocusLock>
+      </div>
     </ThemeProvider>
   );
 }
+
 
 export default App;

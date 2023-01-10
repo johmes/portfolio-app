@@ -10,22 +10,23 @@ const skills = [
             "React Native",
             "Python",
             "Java",
+            "JavaScript",
+            "PHP",
             "MySQL",
-            "TypeScript",
-            "Node.js",
-            "PHP"
+            "MongoDB",
+            "NodeJs",
         ]
     },
     {
         id: 1,
         name: "Platforms",
         list: [
-            "Google Cloud Platform",
+            "GCP",
             "Firebase",
             "Android Studio",
+            "Xcode",
             "VMware",
             "Unix/Linux",
-            "Office 365",
         ]
     },
     {
@@ -48,7 +49,8 @@ export default function Skills({ lightTheme }) {
         <div id="skills" className={"Content-area " + theme}>
             <div className='Inner'>
                 <h2 ref={titleRef}>
-                    Skills Under 
+                    Skills Under
+                    &nbsp;
                     <span className="Header-highlight">
                         The Belt
                     </span>

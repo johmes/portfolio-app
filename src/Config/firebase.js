@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 import 'firebase/compat/database';
 import 'firebase/compat/auth';
-import 'firebase/compat/firestore';
+import * as firestore from 'firebase/compat/firestore';
 import Axios from 'axios'
 
 // Initialize Firebase
@@ -17,4 +17,4 @@ let config = {
 
 const app = initializeApp(config);
 
-export { Axios, app };
+export { Axios, app, firestore };

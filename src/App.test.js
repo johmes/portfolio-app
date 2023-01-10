@@ -7,7 +7,7 @@ import { cleanup,
 import App from './App';
 import { GlobalStyles } from './Styles/global';
 import CTAButton from './components/Button/CTAButton';
-
+// TODO ReactDOM.render deprecated
 it('renders without crashing', () => {
   const div = document.createElement('div');
   ReactDOM.render(<App />, div);

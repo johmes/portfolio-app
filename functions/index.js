@@ -8,22 +8,13 @@ const cors = require("cors")({
 const gmailEmail = functions.config().gmail.email;
 const gmailPassword = functions.config().gmail.password;
 
-const mailTransport = nodemailer.createTransport({
+const gmailTransport = nodemailer.createTransport({
   service: "gmail",
   auth: {
     user: gmailEmail,
     pass: gmailPassword,
   },
 });
-
-// auth: {
-//   type: 'OAuth2',
-//   user: "portfolio-johannes-mensalo@appspot.gserviceaccount.com",
-//   serviceClient: functions.config().gmail.serviceclient,
-//   privateKey: functions.config().gmail.privatekey,
-//   accessToken: functions.config().gmail.accesstoken,
-//   expires: 1484314697598
-// }
 
 exports.submit = functions.region("europe-west1")
     .https.onRequest((req, res) => {
@@ -52,7 +43,7 @@ exports.submit = functions.region("europe-west1")
             <p>${req.body.message}</p>`,
           };
 
-          return mailTransport.sendMail(mailOptions).then(() => {
+          return gmailTransport.sendMail(mailOptions).then(() => {
             console.log("New email sent to:", gmailEmail);
             res.status(200).send({
               isEmailSend: true,

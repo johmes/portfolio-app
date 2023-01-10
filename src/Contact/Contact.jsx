@@ -1,6 +1,9 @@
 import React, { useRef, useState } from 'react';
-import { Axios, app } from '../Config/firebase';
+import { Axios, app, firestore } from '../Config/firebase';
 import { ButtonWrapper, Button } from '../components/Button/CTAButton.styled';
+import {doc, setDoc, getFirestore } from "firebase/firestore";
+
+const db = getFirestore();
 
 export default function Contact({ lightTheme }) {
     const theme = lightTheme ? "light" : "dark";
@@ -18,12 +21,15 @@ export default function Contact({ lightTheme }) {
             formData
         )
             .then(() => {
-                app.firestore().collection('emails').add({
-                    name: formData.name,
-                    email: formData.email,
-                    message: formData.message,
-                    time: new Date(),
-                });
+                setEmailToFirestore(
+                    'emails',
+                    new Date(),
+                    {
+                        name: formData.name,
+                        email: formData.email,
+                        message: formData.message,
+                        time: new Date(),
+                    });
                 setStatus('Success');
                 setFormData({
                     name: '',
@@ -38,6 +44,18 @@ export default function Contact({ lightTheme }) {
             })
 
     }
+
+    const setEmailToFirestore = async (
+        collectionName,
+        docName,
+        data) => {
+      const docRef = doc(
+          db,
+          collectionName,
+          docName);
+    
+      return await setDoc(docRef, data);
+    };
 
 
     const updateInput = e => {
