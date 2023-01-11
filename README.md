@@ -1,6 +1,11 @@
 # Johannes Mensalo Portfolio Web Application
 
+<<<<<<< HEAD
 This web app is made using React in frontend and NodeJs in backend.
+=======
+This web app is a SPA made using React. 
+It uses Firebase cloud functions in backend for features such as nodemailer to send contact messages. 
+>>>>>>> f884324cb75bbc8f06b11f005c0947d84a84a4fc
 
 # Libraries and dependencies
   - axios https://github.com/axios/axios
