@@ -2,27 +2,23 @@
 import React from "react";
 import { bool } from 'prop-types';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from '../../Home';
-import Projects from "../../Projects";
-import Contact from "../../Contact";
-import Skills from "../../Skills";
-import About from '../../About';
-import PrivacyPolicy from "../../Privacy";
-import NotFound from "../../NotFound";
-
+import Home from '../../Home/index.js';
+import Projects from "../../Projects/index.js";
+import Contact from "../../Contact/index.js";
+import Skills from "../../Skills/index.js";
+import About from '../../About/index.js';
+import PrivacyPolicy from "../../Privacy/index.js";
 import {
     NavBar,
     NavLink,
     NavMenu,
-} from './Menu.styled';
-
+} from './Menu.styled.js';
+import NotFound from "../../NotFound.jsx";
 
 function Menu({ open, visible, ...props }) {
-
     let isHidden = open ? true : false;
     let isVisible = visible ? true : false;
     const tabIndex = isHidden ? 0 : -1;
-
 
     return (
         <>

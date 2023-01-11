@@ -4,9 +4,9 @@ import { cleanup,
   render,
   screen
 } from '@testing-library/react';
-import App from './App';
-import { GlobalStyles } from './Styles/global';
-import CTAButton from './components/Button/CTAButton';
+import App from './App.js';
+import { GlobalStyles } from './Styles/global.js';
+import CTAButton from './components/Button/CTAButton.js';
 // TODO ReactDOM.render deprecated
 it('renders without crashing', () => {
   const div = document.createElement('div');

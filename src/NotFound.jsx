@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function NoFound() {
+export default function NotFound() {
     return (
         <div className="Content-area">
             <h2>404</h2>

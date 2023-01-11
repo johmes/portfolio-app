@@ -1,8 +1,8 @@
-import { initializeApp } from "firebase/app";
-import 'firebase/compat/database';
-import 'firebase/compat/auth';
-import * as firestore from 'firebase/compat/firestore';
-import Axios from 'axios'
+const initializeApp = require('firebase/app')
+require('firebase/compat/database')
+require('firebase/compat/auth')
+const firestore = require('firebase/compat/firestore')
+const Axios = require('axios').default
 
 // Initialize Firebase
 let config = {

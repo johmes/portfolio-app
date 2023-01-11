@@ -1,10 +1,10 @@
 // App.js
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { ThemeProvider } from 'styled-components';
-import { useOnClickOutside } from './hooks';
-import { GlobalStyles } from './Styles/global';
-import { theme } from './Styles/theme';
-import { Burger, Menu } from './components';
+import { useOnClickOutside } from './hooks.js';
+import { GlobalStyles } from './Styles/global.js';
+import { theme } from './Styles/theme.js';
+import { Burger, Menu } from './components/index.js';
 import FocusLock from 'react-focus-lock';
 import { getAnalytics, logEvent } from "firebase/analytics";
 
@@ -22,15 +22,13 @@ function App() {
   const [open, setOpen] = useState(false);
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
-
   const [direction, setDirection] = useState();
   const [prevDirection, setPrevDirection] = useState();
 
   const toggleHeader = useCallback((direction, curScroll) => {
     if (direction === 2 && curScroll > 80) {
       setVisible(false);
-    }
-    else if (direction === 1) {
+    } else if (direction === 1) {
       setVisible(true);
     }
     setPrevDirection(direction);
@@ -39,7 +37,6 @@ function App() {
 
   const handleScroll = useCallback(() => {
     const currentScrollPos = window.scrollY || doc.scrollTop;
-
     if (currentScrollPos > prevScrollPos) {
       setDirection(2);
     } else if (currentScrollPos < prevScrollPos) {
@@ -52,23 +49,23 @@ function App() {
     }
 
     setPrevScrollPos(currentScrollPos);
+  }, [
+    direction,
+    prevDirection,
+    prevScrollPos,
+    setDirection,
+    doc.scrollTop,
+    toggleHeader
+  ]);
 
-  }, [direction, prevDirection, prevScrollPos, setDirection, doc.scrollTop, toggleHeader]);
 
-
-  Events.scrollEvent.register('begin', function (to, element) {
-    setOpen(false)
-  });
-
+  Events.scrollEvent.register('begin', (to, element) => setOpen(false));
   useOnClickOutside(node, () => setOpen(false));
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
-
     return () => window.removeEventListener('scroll', handleScroll);
-
   }, [prevScrollPos, visible, handleScroll]);
-
 
   return root(node, open, visible, setOpen, menuId);
 }

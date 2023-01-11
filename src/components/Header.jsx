@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import CTAButton from "../components/Button/CTAButton";
+import CTAButton from "../components/Button/CTAButton.jsx";
 
 function Header() {
     const titleRef = useRef(null);

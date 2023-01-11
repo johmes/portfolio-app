@@ -1,1 +1,1 @@
-export { default } from './CTAButton';
+export { default } from './CTAButton.jsx';

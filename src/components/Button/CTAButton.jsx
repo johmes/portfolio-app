@@ -1,6 +1,6 @@
 import React from 'react';
-import { ButtonWrapper, Button } from './CTAButton.styled';
-import { NavLink } from '../Menu/Menu.styled';
+import { ButtonWrapper, Button } from './CTAButton.styled.js';
+import { NavLink } from '../Menu/Menu.styled.js';
 
 const CTAButton = ({ target }) => {
     const whereTo = target ? target : ''

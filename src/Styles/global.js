@@ -11,7 +11,6 @@ export const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
   }
 
-
   body {
     justify-content: center;
     align-items: center;
@@ -27,13 +26,12 @@ export const GlobalStyles = createGlobalStyle`
     text-decoration: none;
     letter-spacing: .05rem;
     color: ${({ theme }) => theme.colorSecondary};
-}
+  }
 
-a:hover {
-    transition: all .3s linear;
-    color: ${({ theme }) => theme.colorPrimary};
-}
-
+  a:hover {
+      transition: all .3s linear;
+      color: ${({ theme }) => theme.colorPrimary};
+  }
   img {
     border-radius: 5px;
     height: auto;
@@ -67,6 +65,7 @@ a:hover {
     box-shadow: inset 0rem -6rem 3rem -3em ${({ theme }) => theme.primaryDark};
     z-index: 9;
   }
+
   div {
     text-align: center;
   }
@@ -78,7 +77,6 @@ a:hover {
   form {
     margin: 0 auto;
     max-width: 50vh;
-
   }
 
   .form-group {
@@ -88,13 +86,13 @@ a:hover {
     padding: 1rem;
     letter-spacing: .05em;
   }
+
   .form-control {
     border: none;
     outline: none;
     border-radius: 4px;
     padding: 8px;
     margin: 1.2rem 0 0 0;
-
   }
 
   textarea {
@@ -106,10 +104,7 @@ a:hover {
     margin-top: .2rem;
     font-size: ${({ theme }) => theme.smallTextFont};
     color: ${({ theme }) => theme.textColorTertiary};
-
-
   }
-
 
   .Submit-status {
     color: ${({ theme }) => theme.textColorPrimary};
@@ -144,8 +139,6 @@ a:hover {
     @media (max-width: ${({ theme }) => theme.mobile}) {
       width: 100%;
     }
-
-  
   }
 
   .Content-area .Inner p {
@@ -156,7 +149,6 @@ a:hover {
     @media (max-width: ${({ theme }) => theme.tablet}) {
       width: 100%;
     }
-
   }
 
   .Content-area .Inner ul {
@@ -168,16 +160,11 @@ a:hover {
     @media (max-width: ${({ theme }) => theme.tablet}) {
       width: 100%;
     }
-
-  
   }
-
 
   .Content-area .Inner li {
     margin: 1.2rem auto;
     list-decoration
-
-  
   }
 
   .Content-area.dark {
@@ -193,9 +180,6 @@ a:hover {
     min-height: calc(100vh - 5rem);
   }
 
-  .Content-area.landing-area h1 {
-
-  }
 
   .Content-area h1, h2, h3 {
     margin-top: .3rem;
@@ -273,5 +257,14 @@ a:hover {
   .Content-sneakpeek p {
     font-weight: ${({ theme }) => theme.fontThin};
     color: ${({ theme }) => theme.textColorSecondary};
+  }
+  .subHeader {
+    font-size: ${({ theme }) => theme.largeTextFont};
+    font-weight: ${({ theme }) => theme.fontMedium};
+    color: ${({ theme }) => theme.textColorPrimary};
+  }
+  .readMoreText {
+    width: 8rem;
+    margin: 0 auto;
   }
 `

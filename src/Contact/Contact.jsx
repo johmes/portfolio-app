@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
-import { Axios, app, firestore } from '../Config/firebase';
+import { Axios } from '../Config/firebase';
 import { ButtonWrapper, Button } from '../components/Button/CTAButton.styled';
-import {doc, setDoc, getFirestore } from "firebase/firestore";
+import { doc, setDoc, getFirestore } from "firebase/firestore";
 
 const db = getFirestore();
 
@@ -16,10 +16,7 @@ export default function Contact({ lightTheme }) {
     const maxLength = 1000;
 
     const sendEmail = () => {
-        Axios.post(
-            './submit',
-            formData
-        )
+        Axios.post('./submit', formData)
             .then(() => {
                 setEmailToFirestore(
                     'emails',
@@ -42,19 +39,18 @@ export default function Contact({ lightTheme }) {
                 setStatus('Failed');
                 console.log(error);
             })
-
     }
 
     const setEmailToFirestore = async (
         collectionName,
         docName,
         data) => {
-      const docRef = doc(
-          db,
-          collectionName,
-          docName);
-    
-      return await setDoc(docRef, data);
+        const docRef = doc(
+            db,
+            collectionName,
+            docName);
+
+        return await setDoc(docRef, data);
     };
 
 
@@ -159,7 +155,7 @@ const TextAreaInput = ({ label, limited, charCount, ...props }) => {
                 {...props}
             />
 
-            {limited ? 
+            {limited ?
                 <span
                     id="maxChar"
                     className='Max-lenght'

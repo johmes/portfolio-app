@@ -1,6 +1,7 @@
 {
   "name": "johannes-mensalo-portfolio-app",
   "version": "0.1.1",
+  "type":"module",
   "private": true,
   "proxy": "https://europe-west1-portfolio-johannes-mensalo.cloudfunctions.net/",
   "dependencies": {

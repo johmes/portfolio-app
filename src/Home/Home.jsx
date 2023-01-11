@@ -1,11 +1,11 @@
 // Home.jsx
 import React from 'react'
-import Projects from '../Projects';
-import Skills from '../Skills';
-import About from '../About';
-import Contact from '../Contact';
-import Footer from "../components/Footer/Footer";
-import Header from '../components/Header';
+import Projects from '../Projects/index.js';
+import Skills from '../Skills/index.js';
+import About from '../About/index.js';
+import Contact from '../Contact/index.js';
+import Footer from "../components/Footer/Footer.jsx";
+import Header from '../components/Header.jsx';
 
 export default function Home() {
     return (
