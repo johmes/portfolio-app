@@ -1,8 +1,9 @@
 import React, { useRef, useState } from 'react';
-import { Axios, db, firestore } from '../Config/firebase';
+import { Axios, firestore } from '../Config/firebase';
 import { ButtonWrapper, Button } from '../components/Button/CTAButton.styled';
+import { getFirestore } from 'firebase/firestore';
 
-
+const db = getFirestore()
 export default function Contact({ lightTheme }) {
     const theme = lightTheme ? "light" : "dark";
     const titleRef = useRef(null);
