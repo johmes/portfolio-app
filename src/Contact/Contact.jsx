@@ -1,9 +1,7 @@
 import React, { useRef, useState } from 'react';
-import { Axios } from '../Config/firebase';
+import { Axios, db, firestore } from '../Config/firebase';
 import { ButtonWrapper, Button } from '../components/Button/CTAButton.styled';
-import { doc, setDoc, getFirestore } from "firebase/firestore";
 
-const db = getFirestore();
 
 export default function Contact({ lightTheme }) {
     const theme = lightTheme ? "light" : "dark";
@@ -45,12 +43,12 @@ export default function Contact({ lightTheme }) {
         collectionName,
         docName,
         data) => {
-        const docRef = doc(
+        const docRef = db.doc(
             db,
             collectionName,
             docName);
 
-        return await setDoc(docRef, data);
+        return await firestore.setDoc(docRef, data);
     };
 
 

@@ -1,8 +1,8 @@
-const initializeApp = require('firebase/app')
-require('firebase/compat/database')
-require('firebase/compat/auth')
-const firestore = require('firebase/compat/firestore')
-const Axios = require('axios').default
+import firebase from 'firebase/compat/app'
+import 'firebase/compat/database'
+import 'firebase/compat/auth'
+import * as firestore from 'firebase/firestore'
+import Axios from 'axios'
 
 // Initialize Firebase
 let config = {
@@ -15,6 +15,6 @@ let config = {
     measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
 }
 
-const app = initializeApp(config);
-
-export { Axios, app, firestore };
+const app = firebase.initializeApp(config);
+const db = firebase.firestore(app);
+export { Axios, app, firestore, db };
